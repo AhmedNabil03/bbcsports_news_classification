@@ -4,16 +4,12 @@ import joblib
 import pandas as pd
 import re
 
-# import nltk
-# nltk.download('stopwords')
+import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 
 app = Flask(__name__)
-
-# Define paths to models
-MODEL_PATH = os.path.join(os.path.dirname(__file__), 'sport_model.pkl')
-VECTORIZER_PATH = os.path.join(os.path.dirname(__file__), 'sport_vectorizer.pkl')
 
 # Load the model and vectorizer
 model = joblib.load('sport_model.pkl')
@@ -54,5 +50,5 @@ def predict():
         prediction = predict_sport_category(news_text)
         return render_template('index.html', prediction=prediction, news=news_text)
 
-if __name__ == '__main__':
-    app.run(debug=False, port=8080)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int("8080"), debug=True)

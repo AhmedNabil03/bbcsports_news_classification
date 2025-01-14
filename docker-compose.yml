@@ -1,0 +1,9 @@
+version: '3'
+services:
+  sports:
+    build: .
+    ports:
+      - "8080:8080"
+    command: python app.py
+    image: sports-image
+    container_name: sports-container

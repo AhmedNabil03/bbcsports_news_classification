@@ -19,39 +19,13 @@ This model has practical applications in automating the categorization of sports
   - Real-time prediction using the pre-trained model.
   - User-friendly and responsive web interface.
   - Supports live prediction of text category based on input.
+- **Docker Support**:
+  - A ready-to-use Docker image to deploy the application seamlessly.
+  - Multi-container setup with Docker Compose for streamlined deployment.
 
 ## Dataset
 
 The dataset used is the [BBCSport dataset](http://mlg.ucd.ie/datasets/bbc.html), which contains sports news articles across five categories: **football**, **rugby**, **cricket**, **athletics**, and **tennis**.
-
-## Project Structure
-
-```plaintext
-sports-news-classification/
-│
-├── app.py
-├── sport_model.pkl
-├── sport_vectorizer.pkl
-├── templates/
-│   └── index.html
-├── static/
-│   └── styles.css
-├── bbcsport/
-│   ├── football/ 
-│   │   └── *.txt 
-│   ├── rugby/    
-│   │   └── *.txt 
-│   ├── cricket/  
-│   │   └── *.txt 
-│   ├── athletics/
-│   │   └── *.txt
-│   └── tennis/  
-│   │   └── *.txt
-│   └── README.TXT
-├── sports_news.ipynb
-├── README.md
-└── requirements.txt
-```
 
 ## Installation
 
@@ -70,18 +44,36 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 
 # Install the required dependencies
 pip install -r requirements.txt
+
+# Run the Flask application
+python app.py
+```
+
+## Docker Image
+
+**You can pull the image from Docker Hub**:
+```bash
+docker pull ahmednabil12/sports-image:latest
+```
+
+**Running the Application**
+1. Using docker run:
+```bash
+docker run -d -p 8080:8080 ahmednabil12/sports-image:latest
+```
+2. Using Docker Compose:
+```bash
+docker-compose up -d
 ```
 
 ## Usage
 To classify sports news via the web application:
 
-1. Run the Flask application: ```python app.py```
-2. Open your browser and go to [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
-3. Enter the sports news text in the text box.
-4. Click the "Predict" button to see the predicted category.
+1. Open your browser and go to http://127.0.0.1:8080/.
+2. Enter the sports news text in the text box.
+3. Click the "Predict" button to see the predicted category.
 
 You can also try the live demo of the Sports News Category Predictor by visiting the following link: [**Sports News Category Predictor Demo**](https://ahmednabil.pythonanywhere.com/).
-
 ![Web Application Screenshot](screenshot.png)
 
 ## Results
@@ -100,11 +92,35 @@ You can try out the live demo of the Sports News Category Predictor by visiting 
 
 > **Note**: This is a temporary demo and may be taken down in the future.
 
+## Project Structure
 
-
-
-
-
-
-
-
+```plaintext
+sports-news-classification/
+│
+├── app.py
+├── sport_model.pkl
+├── sport_vectorizer.pkl
+├── templates/
+│   └── index.html
+├── static/
+│   └── styles.css
+├── bbcsport/
+│   ├── football/
+│   │   └── *.txt
+│   ├── rugby/
+│   │   └── *.txt
+│   ├── cricket/
+│   │   └── *.txt
+│   ├── athletics/
+│   │   └── *.txt
+│   └── tennis/
+│   │   └── *.txt
+│   └── README.TXT
+├── .dockerignore
+├── docker-compose.yml
+├── Dockerfile
+├── sports_news.ipynb
+├── README.md
+├── requirements.txt
+└── screenshot.png
+```
